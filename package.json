@@ -1,0 +1,25 @@
+{
+  "name": "express-template",
+  "version": "1.0.0",
+  "description": "Personal Express Project Template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckyever/express-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ckyever/express-template/issues"
+  },
+  "homepage": "https://github.com/ckyever/express-template#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
