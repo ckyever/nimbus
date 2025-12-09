@@ -12,6 +12,7 @@ import { loginRouter } from "./routes/loginRouter.js";
 import { logoutRouter } from "./routes/logoutRouter.js";
 import { usernameRouter } from "./routes/usernameRouter.js";
 import { uploadRouter } from "./routes/uploadRouter.js";
+import { filesRouter } from "./routes/filesRouter.js";
 
 const currentDirectory = process.cwd();
 const app = express();
@@ -52,6 +53,7 @@ app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/username", usernameRouter);
 app.use("/upload", uploadRouter);
+app.use("/files", filesRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {
