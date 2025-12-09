@@ -24,16 +24,16 @@ model user {
 
 model file {
   id            Int @id @default(autoincrement())
-  name          String
+  name          String?
   type          Type @default(FILE)
-  url           String
+  url           String?
   user          user @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id       Int
   parent        file? @relation("parent_child", fields: [parent_id], references: [id], onDelete: Cascade)
   parent_id     Int?
   children      file[] @relation("parent_child")
-  created_on    DateTime
-  modified_on   DateTime
+  created_on    DateTime @default(now())
+  modified_on   DateTime @default(now())
 }
 
 enum Type {
