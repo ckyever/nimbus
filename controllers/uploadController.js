@@ -1,5 +1,9 @@
 const getUploadPage = (req, res) => {
-  res.render("index", { title: "Nimbus", page: "pages/upload" });
+  if (res.locals.currentUser) {
+    res.render("index", { title: "Nimbus", page: "pages/upload" });
+  } else {
+    res.redirect("/login");
+  }
 };
 
 const uploadFile = (req, res) => {
