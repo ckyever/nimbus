@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/signup.js" defer></script>
+  </head>
+  <body>
+    <div class="signup-login-container">
+      <h1><a href="/">Nimbus</a></h1>
+      <form class="signup-login" action="/signup" method="POST">
+        <div>
+          <div id="username-info"></div>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            aria-label="Username"
+            placeholder="Username"
+            maxlength="255"
+            required
+          />
+        </div>
+        <input
+          type="text"
+          name="firstname"
+          id="firstname"
+          aria-label="First name"
+          placeholder="First name"
+          maxlength="50"
+        />
+        <input
+          type="text"
+          name="lastname"
+          id="lastname"
+          aria-label="Last name"
+          placeholder="Last name"
+          maxlength="50"
+        />
+        <div>
+          <div id="confirm-password-info"></div>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            aria-label="Password"
+            placeholder="Password"
+            maxlength="255"
+            required
+          />
+        </div>
+        <input
+          type="password"
+          name="confirm-password"
+          id="confirm-password"
+          aria-label="Confirm password"
+          placeholder="Confirm password"
+          maxlength="255"
+          required
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+      <%- include("partials/errors.ejs") %>
+      <div>Already have an account? <a href="/login">Login</a></div>
+    </div>
+  </body>
+</html>

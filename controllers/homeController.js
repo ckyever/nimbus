@@ -1,5 +1,5 @@
 const getHomePage = (req, res) => {
-  res.render("home", { title: "Hello World" });
+  res.render("index", { title: "Nimbus", page: "pages/home" });
 };
 
 export { getHomePage };
