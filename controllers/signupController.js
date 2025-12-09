@@ -88,6 +88,20 @@ const createUser = [
       });
     }
 
+    if (newUser) {
+      try {
+        await prisma.file.create({
+          data: {
+            type: "FOLDER",
+            user_id: newUser.id,
+          },
+        });
+      } catch (error) {
+        console.error("Failed to create user's root directory");
+        return res.status(500).send("Internal server error");
+      }
+    }
+
     req.login(newUser, (error) => {
       if (error) {
         console.error("Passport login failed after sign up", error);
