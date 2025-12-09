@@ -1,5 +1,4 @@
 const getFilesPage = (req, res) => {
-  console.log(req.path);
   if (res.locals.currentUser) {
     res.render("index", {
       title: "Nimbus | Files",
