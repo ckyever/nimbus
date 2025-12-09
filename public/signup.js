@@ -20,7 +20,6 @@ const validatePasswords = (password, passwordConfirmation) => {
   }
 };
 
-/* CKYTODO: Add back after implementing user endpoint
 usernameInput.addEventListener("input", async (event) => {
   const username = event.target.value;
 
@@ -38,7 +37,6 @@ usernameInput.addEventListener("input", async (event) => {
     usernameInfo.textContent = "";
   }
 });
-*/
 
 passwordInput.addEventListener("input", () => {
   passwordConfirmationInput.value = "";
