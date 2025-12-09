@@ -19,6 +19,26 @@ model user {
   password  String
   firstname String?
   lastname  String?
+  files     file[]
+}
+
+model file {
+  id            Int @id @default(autoincrement())
+  name          String
+  type          Type @default(FILE)
+  url           String
+  user          user @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id       Int
+  parent        file? @relation("parent_child", fields: [parent_id], references: [id], onDelete: Cascade)
+  parent_id     Int?
+  children      file[] @relation("parent_child")
+  created_on    DateTime
+  modified_on   DateTime
+}
+
+enum Type {
+  FILE
+  FOLDER
 }
 
 model Session {
