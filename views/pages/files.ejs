@@ -1,78 +1,12 @@
 <div class="content">
   <h1>Files</h1>
   <p>Current Folder ID - <%=locals.currentFolderId%></p>
-  <button id="new-folder-button">New Folder</button>
-  <% if (locals.parentFolderId) { %>
+  <%- include("../partials/new-folder-button") %>
+  <% if (locals.parentFolderId) {
+  %>
   <a href="/files/<%=locals.parentFolderId%>">Previous Folder</a>
   <% } %>
   <div class="file-window">
     <%- include("../partials/file-tree", {files: files}) %>
   </div>
-
-  <dialog id="new-folder-dialog">
-    <form id="new-folder-form" action="/new-folder" method="POST">
-      <input
-        type="folder-name"
-        name="folder-name"
-        id="folder-name"
-        aria-label="folder-name"
-        required
-      />
-      <input
-        type="hidden"
-        name="parent-folder-id"
-        value="<%= locals.currentFolderId %>"
-      />
-      <button type="submit">Create</button>
-      <button id="new-folder-cancel" type="reset">Cancel</button>
-    </form>
-    <div id="new-folder-message"></div>
-  </dialog>
 </div>
-
-<script>
-  // Should not be able to add folder if folder in current path already has the same name
-  const newFolderButton = document.getElementById("new-folder-button");
-  const newFolderDialog = document.getElementById("new-folder-dialog");
-  const newFolderDialogCancel = document.getElementById("new-folder-cancel");
-  const newFolderForm = document.getElementById("new-folder-form");
-  const newFolderMessage = document.getElementById("new-folder-message");
-
-  const newFolderError = "Unable to create this folder";
-
-  newFolderButton.addEventListener("click", () => {
-    newFolderDialog.showModal();
-  });
-
-  newFolderForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-
-    let response;
-    try {
-      response = await fetch(form.action, {
-        method: form.method,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(formData).toString(),
-      });
-    } catch {
-      console.error("Failed to request folder creation");
-      newFolderMessage.innerText = newFolderError;
-      return;
-    }
-
-    const data = await response.json();
-    if (data.success) {
-      window.location.reload();
-    } else {
-      newFolderMessage.innerText = newFolderError;
-    }
-  });
-
-  newFolderDialogCancel.addEventListener("click", () => {
-    newFolderDialog.close();
-  });
-</script>
