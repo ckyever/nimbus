@@ -8,6 +8,7 @@ const getFilesPage = async (req, res) => {
         title: "Nimbus | Files",
         page: "pages/files",
         path: req.path,
+        currentFolderId: folderId,
       });
     } else {
       res.status(404).render("index", {
