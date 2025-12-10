@@ -4,7 +4,7 @@
     <input
       type="folder-name"
       name="folder-name"
-      id="folder-name"
+      id="new-folder-name"
       aria-label="folder-name"
       required
     />
@@ -25,6 +25,19 @@
   const newFolderDialogCancel = document.getElementById("new-folder-cancel");
   const newFolderForm = document.getElementById("new-folder-form");
   const newFolderMessage = document.getElementById("new-folder-message");
+  const folderNameInput = document.getElementById("new-folder-name");
+
+  const filesInCurrentFolder = <%- JSON.stringify(files) %>;
+
+  folderNameInput.addEventListener("input", (event) => {
+    if (filesInCurrentFolder.some((file) => file.name === event.target.value)) {
+      folderNameInput.setCustomValidity(
+        "This file/folder already exists"
+      );
+    } else {
+      folderNameInput.setCustomValidity("");
+    }
+  });
 
   const newFolderError = "Unable to create this folder";
 

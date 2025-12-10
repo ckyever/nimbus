@@ -1,7 +1,7 @@
 <div class="content">
   <h1>Files</h1>
   <p>Current Folder ID - <%=locals.currentFolderId%></p>
-  <%- include("../partials/new-folder-button") %>
+  <%- include("../partials/new-folder-button", {files: files}) %>
   <% if (locals.parentFolderId) {
   %>
   <a href="/files/<%=locals.parentFolderId%>">Previous Folder</a>
