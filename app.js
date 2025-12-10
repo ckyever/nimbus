@@ -55,7 +55,6 @@ app.use("/logout", logoutRouter);
 app.use("/username", usernameRouter);
 app.use("/upload", uploadRouter);
 app.use("/files", filesRouter);
-app.use("/files", filesRouter);
 app.use("/new-folder", newFolderRouter);
 
 const PORT = process.env.PORT || 3000;

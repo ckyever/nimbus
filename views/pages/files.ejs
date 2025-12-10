@@ -2,6 +2,9 @@
   <h1>Files</h1>
   <p>Current Folder ID - <%=locals.currentFolderId%></p>
   <button id="new-folder-button">New Folder</button>
+  <% if (locals.parentFolderId) { %>
+  <a href="/files/<%=locals.parentFolderId%>">Previous Folder</a>
+  <% } %>
   <div class="file-window">
     <%- include("../partials/file-tree", {files: files}) %>
   </div>
@@ -63,9 +66,7 @@
 
     const data = await response.json();
     if (data.success) {
-      newFolderMessage.innerText = "";
-      newFolderForm.reset();
-      newFolderDialog.close();
+      window.location.reload();
     } else {
       newFolderMessage.innerText = newFolderError;
     }

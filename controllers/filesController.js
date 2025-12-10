@@ -2,16 +2,22 @@ import { prisma } from "../lib/prisma.js";
 
 const getFilesPage = async (req, res) => {
   if (res.locals.currentUser) {
-    const userId = res.locals.currentUser.id;
-    const folderId = await getFoldersId(userId, req.path);
+    let folderId = Number(req.params.folder_id);
+    const userId = Number(res.locals.currentUser.id);
+
+    if (!folderId) {
+      folderId = Number(await getUsersRootFolder(userId, req.path));
+    }
+
     if (folderId) {
       const files = await getFiles(userId, folderId);
-      console.log(files);
+      const parentFolderId = await getParentFolder(userId, folderId);
       res.render("index", {
         title: "Nimbus | Files",
         page: "pages/files",
         path: req.path,
         currentFolderId: folderId,
+        parentFolderId: parentFolderId,
         files: files,
       });
     } else {
@@ -25,7 +31,7 @@ const getFilesPage = async (req, res) => {
   }
 };
 
-const getFoldersId = async (userId, folderPath) => {
+const getUsersRootFolder = async (userId) => {
   let rootFolderId;
   try {
     const results = await prisma.file.findMany({
@@ -44,35 +50,7 @@ const getFoldersId = async (userId, folderPath) => {
     return null;
   }
 
-  // Path starts with '/' so first element is empty
-  const folders = folderPath.split("/").slice(1);
-  let currentFolderId = rootFolderId;
-  for (const folder of folders) {
-    if (folder.length > 0) {
-      let results;
-      try {
-        results = await prisma.file.findMany({
-          where: {
-            user_id: userId,
-            parent_id: currentFolderId,
-            name: folder,
-            type: "FOLDER",
-          },
-        });
-      } catch {
-        console.error("Failed to check if folder exists");
-        return null;
-      }
-
-      if (results.length === 1) {
-        currentFolderId = results[0].id;
-      } else {
-        return null;
-      }
-    }
-  }
-
-  return currentFolderId;
+  return rootFolderId;
 };
 
 const getFiles = async (userId, folderId) => {
@@ -88,6 +66,24 @@ const getFiles = async (userId, folderId) => {
     console.error(`Failed to get files from folder ID - ${folderId}`);
   }
   return results;
+};
+
+const getParentFolder = async (userId, folderId) => {
+  let results;
+  try {
+    results = await prisma.file.findUnique({
+      where: {
+        user_id: userId,
+        id: folderId,
+      },
+      select: {
+        parent_id: true,
+      },
+    });
+  } catch {
+    console.error(`Failed to get parent folder ID for - ${folderId}`);
+  }
+  return results.parent_id;
 };
 
 export { getFilesPage };

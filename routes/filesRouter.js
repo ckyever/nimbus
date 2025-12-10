@@ -2,6 +2,6 @@ import { Router } from "express";
 import { getFilesPage } from "../controllers/filesController.js";
 
 const filesRouter = Router();
-filesRouter.get("/{*splat}", getFilesPage);
+filesRouter.get("/{:folder_id}", getFilesPage);
 
 export { filesRouter };

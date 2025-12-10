@@ -21,12 +21,12 @@
   <% files.forEach((file) => { %>
     <%const modifiedOn = dateFormatter.format(file.modified_on);%>
     <%const createdOn = dateFormatter.format(file.created_on);%>
-  <tr>
-    <td><%= file.name %></td>
-    <td><%= file.type %></td>
-    <td><%= modifiedOn %></td>
-    <td><%= createdOn %></td>
-  </tr>
+    <tr>
+      <td><a href="/files/<%= file.id %>"><%= file.name %></a></td>
+      <td><%= file.type %></td>
+      <td><%= modifiedOn %></td>
+      <td><%= createdOn %></td>
+    </tr>
   <% }); %>
 </table>
 <% } %>
