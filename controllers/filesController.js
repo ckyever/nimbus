@@ -2,13 +2,17 @@ import { prisma } from "../lib/prisma.js";
 
 const getFilesPage = async (req, res) => {
   if (res.locals.currentUser) {
-    const folderId = await getFoldersId(res.locals.currentUser.id, req.path);
+    const userId = res.locals.currentUser.id;
+    const folderId = await getFoldersId(userId, req.path);
     if (folderId) {
+      const files = await getFiles(userId, folderId);
+      console.log(files);
       res.render("index", {
         title: "Nimbus | Files",
         page: "pages/files",
         path: req.path,
         currentFolderId: folderId,
+        files: files,
       });
     } else {
       res.status(404).render("index", {
@@ -69,6 +73,21 @@ const getFoldersId = async (userId, folderPath) => {
   }
 
   return currentFolderId;
+};
+
+const getFiles = async (userId, folderId) => {
+  let results;
+  try {
+    results = await prisma.file.findMany({
+      where: {
+        user_id: userId,
+        parent_id: folderId,
+      },
+    });
+  } catch {
+    console.error(`Failed to get files from folder ID - ${folderId}`);
+  }
+  return results;
 };
 
 export { getFilesPage };

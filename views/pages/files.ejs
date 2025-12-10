@@ -1,7 +1,11 @@
 <div class="content">
   <h1>Files</h1>
-  <p>Folder ID - <%=locals.currentFolderId%></p>
+  <p>Current Folder ID - <%=locals.currentFolderId%></p>
   <button id="new-folder-button">New Folder</button>
+  <div class="file-window">
+    <%- include("../partials/file-tree", {files: files}) %>
+  </div>
+
   <dialog id="new-folder-dialog">
     <form id="new-folder-form" action="/new-folder" method="POST">
       <input
