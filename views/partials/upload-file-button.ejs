@@ -13,6 +13,11 @@
       aria-label="file"
       required
     />
+    <input
+      type="hidden"
+      name="parent-folder-id"
+      value="<%= locals.currentFolderId %>"
+    />
     <button type="submit">Upload</button>
     <button id="upload-file-cancel" type="reset">Cancel</button>
   </form>
