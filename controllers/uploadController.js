@@ -1,11 +1,15 @@
 import { prisma } from "../lib/prisma.js";
+import { upload } from "./cloud.js";
+import * as fs from "fs/promises";
 
 const uploadFile = async (req, res) => {
   const filename = req.file.originalname;
   const userId = res.locals.currentUser.id;
   const parentFolderId = Number(req.body["parent-folder-id"]);
-  const fileUrl = req.file.path;
   const size = req.file.size;
+
+  const cloudUrl = await upload(req.file.path);
+  await fs.unlink(req.file.path);
 
   const existingFile = await prisma.file.findFirst({
     where: {
@@ -20,7 +24,7 @@ const uploadFile = async (req, res) => {
     await prisma.file.update({
       data: {
         id: existingFile.id,
-        url: fileUrl,
+        url: cloudUrl,
         size: size,
         modified_on: new Date(),
       },
@@ -36,7 +40,7 @@ const uploadFile = async (req, res) => {
         user_id: res.locals.currentUser.id,
         parent_id: Number(req.body["parent-folder-id"]),
         size: size,
-        url: fileUrl,
+        url: cloudUrl,
       },
     });
   }
