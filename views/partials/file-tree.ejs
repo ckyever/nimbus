@@ -10,7 +10,6 @@
   const dateFormatter = new Intl.DateTimeFormat("en-AU", options);
 %>
 
-<% if (locals.files) {%>
 <table>
   <tr>
     <th>Name</th>
@@ -28,7 +27,7 @@
       <td><%= file.size %></td>
       <td><%= modifiedOn %></td>
       <td><%= createdOn %></td>
+      <td><button type="button">Delete</button></td>
     </tr>
   <% }); %>
 </table>
-<% } %>
