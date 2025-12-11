@@ -27,6 +27,7 @@ model file {
   name          String?
   type          Type @default(FILE)
   url           String?
+  size          BigInt?
   user          user @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id       Int
   parent        file? @relation("parent_child", fields: [parent_id], references: [id], onDelete: Cascade)
