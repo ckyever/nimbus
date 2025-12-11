@@ -1,6 +1,5 @@
 <div class="content">
-  <h1>Files</h1>
-  <p>Current Folder ID - <%=locals.currentFolderId%></p>
+  <h1>My Files</h1>
   <%- include("../partials/upload-file-button", {files: files}) %>
   <%- include("../partials/new-folder-button", {files: files}) %>
   <% if (locals.parentFolderId) {
