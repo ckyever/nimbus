@@ -53,7 +53,6 @@ app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
 app.use("/username", usernameRouter);
-app.use("/upload", uploadRouter);
 app.use("/files", filesRouter);
 app.use("/new-folder", newFolderRouter);
 
