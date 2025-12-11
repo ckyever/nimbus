@@ -1,0 +1,63 @@
+<button id="upload-file-button">Upload File</button>
+<dialog id="upload-file-dialog">
+  <form
+    id="upload-file-form"
+    action="/upload"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <input
+      type="file"
+      name="file"
+      id="upload-file"
+      aria-label="file"
+      required
+    />
+    <button type="submit">Upload</button>
+    <button id="upload-file-cancel" type="reset">Cancel</button>
+  </form>
+  <div id="upload-file-message"></div>
+</dialog>
+
+<script>
+  const uploadFileButton = document.getElementById("upload-file-button");
+  const uploadFileDialog = document.getElementById("upload-file-dialog");
+  const uploadFileDialogCancel = document.getElementById("upload-file-cancel");
+  const uploadFileForm = document.getElementById("upload-file-form");
+  const uploadFileMessage = document.getElementById("upload-file-message");
+
+  const uploadFileError = "Unable to upload this file";
+
+  uploadFileButton.addEventListener("click", () => {
+    uploadFileDialog.showModal();
+  });
+
+  uploadFileForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    let response;
+    try {
+      response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+      });
+    } catch {
+      console.error("Failed to request file upload");
+      uploadFileMessage.innerText = uploadFileError;
+      return;
+    }
+
+    const data = await response.json();
+    if (data.success) {
+      window.location.reload();
+    } else {
+      uploadFileMessage.innerText = uploadFileError;
+    }
+  });
+
+  uploadFileDialogCancel.addEventListener("click", () => {
+    uploadFileDialog.close();
+  });
+</script>

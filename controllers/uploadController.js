@@ -8,7 +8,7 @@ const getUploadPage = (req, res) => {
 
 const uploadFile = (req, res) => {
   console.log(req.file.path);
-  res.redirect("/");
+  res.json({ success: true });
 };
 
 export { getUploadPage, uploadFile };
