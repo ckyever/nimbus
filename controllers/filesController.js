@@ -86,4 +86,19 @@ const getParentFolder = async (userId, folderId) => {
   return results.parent_id;
 };
 
-export { getFilesPage };
+const deleteFile = async (req, res) => {
+  const fileId = req.params.file_id;
+  try {
+    await prisma.file.delete({
+      where: {
+        id: Number(fileId),
+      },
+    });
+    res.json({ success: true });
+  } catch {
+    console.error(`Failed to delete file - ${fileId}`);
+    res.json({ success: false });
+  }
+};
+
+export { getFilesPage, deleteFile };

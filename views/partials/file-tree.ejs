@@ -10,7 +10,7 @@
   const dateFormatter = new Intl.DateTimeFormat("en-AU", options);
 %>
 
-<table>
+<table id="file-tree">
   <tr>
     <th>Name</th>
     <th>Type</th>
@@ -22,12 +22,50 @@
     <%const modifiedOn = dateFormatter.format(file.modified_on);%>
     <%const createdOn = dateFormatter.format(file.created_on);%>
     <tr>
-      <td><a href="/files/<%= file.id %>"><%= file.name %></a></td>
+      <% if (file.type === "FOLDER") { %>
+        <td><a href="/files/<%= file.id %>"><%= file.name %></a></td>
+      <% } else { %>
+        <td><%= file.name %></td>
+      <% } %>
       <td><%= file.type %></td>
       <td><%= file.size %></td>
       <td><%= modifiedOn %></td>
       <td><%= createdOn %></td>
-      <td><button type="button">Delete</button></td>
+      <td><a class="delete-link" href="/files/<%= file.id %>/delete">Delete</a></td>
     </tr>
   <% }); %>
 </table>
+
+<dialog id="delete-dialog">
+  <div>Are you sure you want to delete?</div>
+  <button id="yes-delete">Yes</button>
+  <button id="no-delete">No</button>
+</dialog>
+
+<script>
+  const fileTreeTable = document.getElementById("file-tree");
+  const deleteDialog = document.getElementById("delete-dialog");
+  const deleteYes = document.getElementById("yes-delete");
+  const deleteNo = document.getElementById("no-delete");
+  let targetUrl = "";
+
+  fileTreeTable.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-link")) {
+      event.preventDefault();
+      targetUrl = event.target.href;
+      console.log(targetUrl);
+      deleteDialog.showModal();
+    }
+  });
+
+  deleteYes.addEventListener("click", async (event) => {
+    await fetch(targetUrl);
+    document.location.reload();
+    deleteDialog.close();
+  });
+
+  deleteNo.addEventListener("click", (event) => {
+    deleteDialog.close();
+  });
+
+</script>
