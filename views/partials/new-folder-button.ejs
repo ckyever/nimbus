@@ -27,10 +27,10 @@
   const newFolderMessage = document.getElementById("new-folder-message");
   const folderNameInput = document.getElementById("new-folder-name");
 
-  const filesInCurrentFolder = <%- JSON.stringify(files) %>;
+  const fileNamesInCurrentFolder = <%- JSON.stringify(files.map((file) => file.name)) %>;
 
   folderNameInput.addEventListener("input", (event) => {
-    if (filesInCurrentFolder.some((file) => file.name === event.target.value)) {
+    if (fileNamesInCurrentFolder.some((file) => file === event.target.value)) {
       folderNameInput.setCustomValidity(
         "This file/folder already exists"
       );
