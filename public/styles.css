@@ -103,15 +103,26 @@ body {
 
 header {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px;
+  border-right: 1px solid var(--border-colour);
+}
+
+main {
+  padding: 20px;
+  width: 100%;
+  flex: 1;
 }
 
 nav ul {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
+  padding: 0;
 }
 
 a {
@@ -189,4 +200,10 @@ ul {
 
 .invalid-message {
   color: var(--invalid-colour);
+}
+
+.nimbus-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
 }
