@@ -1,11 +1,15 @@
 <div class="content">
-  <h2>My Files</h2>
-  <%- include("../partials/upload-file-button", {files: files}) %>
-  <%- include("../partials/new-folder-button", {files: files}) %>
-  <% if (locals.parentFolderId) {
-  %>
-  <a href="/files/<%=locals.parentFolderId%>">Previous Folder</a>
-  <% } %>
+  <div class="page-title">
+    <h2>My Files</h2>
+    <div class="actions">
+      <% if (locals.parentFolderId) {
+      %>
+      <a href="/files/<%=locals.parentFolderId%>">Previous Folder</a>
+      <% } %>
+      <%- include("../partials/upload-file-button", {files: files}) %>
+      <%- include("../partials/new-folder-button", {files: files}) %>
+    </div>
+  </div>
   <div class="file-window">
     <%- include("../partials/file-tree", {files: files}) %>
   </div>

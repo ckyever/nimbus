@@ -208,6 +208,14 @@ ul {
   display: flex;
 }
 
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  border-bottom: 1px solid var(--border-colour);
+  margin-bottom: 20px;
+}
+
 .file-tree {
   display: grid;
   grid-template-columns: 1fr repeat(5, max-content);
