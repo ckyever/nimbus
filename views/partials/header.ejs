@@ -3,8 +3,12 @@
   <nav>
     <ul>
       <li><a href="/">Recent Files</a></li>
-      <% if (currentUser) { %>
-      <li><a href="/files">My Files</a></li>
+      <% if (currentUser) { %> <% let usersName = currentUser.firstname ?
+      currentUser.firstname : currentUser.username; usersName =
+      usersName.charAt(0).toUpperCase() + usersName.slice(1); %>
+      <li>
+        <a href="/files"><%= usersName %>'s Files</a>
+      </li>
       <li><a href="/logout">Logout</a></li>
       <% } else { %>
       <li><a href="/login">Login</a></li>

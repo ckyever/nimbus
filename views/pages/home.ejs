@@ -1,9 +1,5 @@
 <div class="content">
   <h2>Recent Files</h2>
-  <div>
-    Welcome back, <%= currentUser.firstname ? currentUser.firstname :
-    currentUser.username %>!
-  </div>
   <div class="file-window">
     <%- include("../partials/file-tree", {files: files}) %>
   </div>
