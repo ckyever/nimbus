@@ -10,31 +10,28 @@
   const dateFormatter = new Intl.DateTimeFormat("en-AU", options);
 %>
 
-<table id="file-tree">
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Size</th>
-    <th>Modified</th>
-    <th>Created</th>
-  </tr>
+<div class="file-tree">
+  <div class="cell heading">Name</div>
+  <div class="cell heading">Type</div>
+  <div class="cell heading">Size</div>
+  <div class="cell heading">Modified</div>
+  <div class="cell heading">Created</div>
+  <div class="cell heading"></div>
   <% files.forEach((file) => { %>
     <%const modifiedOn = dateFormatter.format(file.modified_on);%>
     <%const createdOn = dateFormatter.format(file.created_on);%>
-    <tr>
-      <% if (file.type === "FOLDER") { %>
-        <td><a href="/files/<%= file.id %>"><%= file.name %></a></td>
-      <% } else { %>
-        <td><a href="<%= file.url %>" download target="_blank""><%= file.name %></a></td>
-      <% } %>
-      <td><%= file.type %></td>
-      <td><%= file.size %></td>
-      <td><%= modifiedOn %></td>
-      <td><%= createdOn %></td>
-      <td><a class="delete-link" href="/files/<%= file.id %>/delete">Delete</a></td>
-    </tr>
+    <% if (file.type === "FOLDER") { %>
+      <div class="cell"><a href="/files/<%= file.id %>"><%= file.name %></a></div>
+    <% } else { %>
+      <div class="cell"><a href="<%= file.url %>" download target="_blank""><%= file.name %></a></div>
+    <% } %>
+    <div class="cell"><%= file.type %></div>
+    <div class="cell"><%= file.size %></div>
+    <div class="cell"><%= modifiedOn %></div>
+    <div class="cell"><%= createdOn %></div>
+    <div class="cell"><a class="delete-link" href="/files/<%= file.id %>/delete">Delete</a></div>
   <% }); %>
-</table>
+</div>
 
 <dialog id="delete-dialog">
   <div>Are you sure you want to delete?</div>

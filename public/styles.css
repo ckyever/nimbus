@@ -207,3 +207,15 @@ ul {
   height: 100vh;
   display: flex;
 }
+
+.file-tree {
+  display: grid;
+  grid-template-columns: 1fr repeat(5, max-content);
+  column-gap: 40px;
+  row-gap: 12px;
+}
+
+.cell.heading {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
