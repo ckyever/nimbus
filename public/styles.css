@@ -101,6 +101,19 @@ body {
   align-items: center;
 }
 
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
 a {
   color: var(--main-text-colour);
 }
@@ -139,6 +152,10 @@ h3 {
 
 h1 {
   font-size: 3rem;
+}
+
+ul {
+  list-style: none;
 }
 
 .signup-login-container {
