@@ -77,3 +77,70 @@ h6 {
 }
 
 /* End of CSS Reset */
+
+:root {
+  --main-background-colour: #111111;
+  --main-text-colour: #ffffff;
+  --main-card-background-colour: #222222;
+  --card-border-radius: 20px;
+  --border-colour: #8f908e;
+  --focus-colour: #5bd06c;
+}
+
+html {
+  background-color: var(--main-background-colour);
+  color: var(--main-text-colour);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: var(--main-text-colour);
+}
+
+input,
+button {
+  padding: 8px;
+  border-radius: 8px;
+}
+
+input {
+  background-color: var(--main-card-colour);
+  color: var(--main-text-colour);
+  border: 1px solid var(--border-colour);
+  padding: 12px;
+}
+
+input:focus {
+  outline: 2px solid var(--focus-colour);
+  outline-offset: -1px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.signup-login-container {
+  background-color: var(--main-card-background-colour);
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  width: 350px;
+  padding: 30px;
+  border-radius: var(--card-border-radius);
+}
+
+.signup-login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
