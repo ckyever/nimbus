@@ -91,6 +91,7 @@ h6 {
 html {
   background-color: var(--main-background-colour);
   color: var(--main-text-colour);
+  font-family: "Inter", sans-serif;
 }
 
 body {
@@ -124,6 +125,11 @@ input:focus {
 
 button {
   cursor: pointer;
+}
+
+h1 {
+  font-family: "Space Mono";
+  font-size: 3rem;
 }
 
 .signup-login-container {
