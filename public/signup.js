@@ -11,10 +11,12 @@ const validatePasswords = (password, passwordConfirmation) => {
     passwordConfirmationInfo.innerText = "";
   } else {
     if (passwordConfirmation === password) {
-      passwordConfirmationInfo.innerText = "Matching ✅";
+      passwordConfirmationInfo.innerText = "Passwords match";
+      passwordConfirmationInfo.className = "valid-message";
       passwordConfirmationInput.setCustomValidity("");
     } else {
-      passwordConfirmationInfo.innerText = "Passwords do not match ⛔";
+      passwordConfirmationInfo.innerText = "Passwords are not matching";
+      passwordConfirmationInfo.className = "invalid-message";
       passwordConfirmationInput.setCustomValidity("Passwords must match");
     }
   }
@@ -27,10 +29,12 @@ usernameInput.addEventListener("input", async (event) => {
     const response = await fetch(`/username/${event.target.value}`);
     data = await response.json();
     if (data.success) {
-      usernameInfo.textContent = "Username is not available ⛔";
+      usernameInfo.textContent = "Username is not available";
+      usernameInfo.className = "invalid-message";
       usernameInput.setCustomValidity("Username must be available");
     } else {
-      usernameInfo.textContent = "Username is available ✅";
+      usernameInfo.textContent = "Username is available";
+      usernameInfo.className = "valid-message";
       usernameInput.setCustomValidity("");
     }
   } else {

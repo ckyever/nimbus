@@ -84,7 +84,8 @@ h6 {
   --main-card-background-colour: #222222;
   --card-border-radius: 20px;
   --border-colour: #8f908e;
-  --focus-colour: #5bd06c;
+  --accent-colour: #5bd06c;
+  --invalid-colour: #d33b3b;
 }
 
 html {
@@ -117,7 +118,7 @@ input {
 }
 
 input:focus {
-  outline: 2px solid var(--focus-colour);
+  outline: 2px solid var(--accent-colour);
   outline-offset: -1px;
 }
 
@@ -143,4 +144,17 @@ button {
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+.message-field-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.valid-message {
+  color: var(--accent-colour);
+}
+
+.invalid-message {
+  color: var(--invalid-colour);
 }
