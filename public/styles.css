@@ -84,7 +84,7 @@ h6 {
   --main-card-background-colour: #222222;
   --card-border-radius: 20px;
   --border-colour: #8f908e;
-  --accent-colour: #5bd06c;
+  --accent-colour: #53ff5e;
   --invalid-colour: #d33b3b;
 }
 
@@ -103,6 +103,10 @@ body {
 
 a {
   color: var(--main-text-colour);
+}
+
+a:hover {
+  color: var(--accent-colour);
 }
 
 input,
