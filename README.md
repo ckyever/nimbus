@@ -1,12 +1,12 @@
-# Express Template
+# Nimbus
 
-A template intended for projects built with NodeJS, Express, and EJS.
+A personal file storage system built with NodeJS, Express, EJS, PostgreSQL, Prisma ORM, and PassportJS.
 
-👉 [Live Demo](https://github.com/ckyever/express-template)
+👉 [Live Demo](https://nimbus-production-7671.up.railway.app)
 
 ## Acknowledgement
 
-Inspired from [The Odin Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs)
+Inspired from [The Odin Project](https://www.theodinproject.com/lessons/nodejs-file-uploader)
 
 ## License
 
