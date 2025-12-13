@@ -50,17 +50,17 @@
 </dialog>
 
 <script>
-  const fileTreeTable = document.getElementById("file-tree");
+  const fileTreeTable = document.querySelector(".file-tree");
   const deleteDialog = document.getElementById("delete-dialog");
   const deleteYes = document.getElementById("yes-delete");
   const deleteNo = document.getElementById("no-delete");
   let targetUrl = "";
 
   fileTreeTable.addEventListener("click", (event) => {
+    console.log("classList=" + event.target.classList);
     if (event.target.classList.contains("delete-link")) {
       event.preventDefault();
       targetUrl = event.target.href;
-      console.log(targetUrl);
       deleteDialog.showModal();
     }
   });
