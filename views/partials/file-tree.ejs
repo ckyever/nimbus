@@ -13,7 +13,7 @@
 <div class="file-tree">
   <div class="cell heading">Name</div>
   <div class="cell heading">Type</div>
-  <div class="cell heading">Size</div>
+  <div class="cell heading">Size (kB)</div>
   <div class="cell heading">Modified</div>
   <div class="cell heading">Created</div>
   <div class="cell heading"></div>
@@ -36,7 +36,7 @@
       </div>
     <% } %>
     <div class="cell"><%= file.type %></div>
-    <div class="cell"><%= file.size %></div>
+    <div class="cell"><%= file.size ? (Number(file.size)/1000).toFixed(2) : null %></div>
     <div class="cell"><%= modifiedOn %></div>
     <div class="cell"><%= createdOn %></div>
     <div class="cell">
