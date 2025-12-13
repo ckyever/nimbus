@@ -262,16 +262,21 @@ dialog {
   gap: 4px;
 }
 
-.file-folder-name:hover {
+.file-folder-name:hover,
+.delete-link:hover,
+.file-action:hover {
   color: var(--accent-colour);
 }
 
-.file-folder-name:hover .icon path {
+.file-folder-name:hover .icon path,
+.delete-link:hover .icon path,
+.file-action:hover .icon path {
   fill: var(--icon-fill-accent-colour);
 }
 
 .icon {
   width: 25px;
+  pointer-events: none;
 }
 
 .actions {
@@ -288,12 +293,4 @@ dialog {
   background-color: transparent;
   border: none;
   text-decoration: none;
-}
-
-.file-action:hover {
-  color: var(--accent-colour);
-}
-
-.file-action:hover .icon path {
-  fill: var(--icon-fill-accent-colour);
 }
