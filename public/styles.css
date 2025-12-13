@@ -86,6 +86,8 @@ h6 {
   --border-colour: #8f908e;
   --accent-colour: #53ff5e;
   --invalid-colour: #d33b3b;
+  --icon-fill-colour: var(--main-text-colour);
+  --icon-fill-accent-colour: var(--accent-colour);
 }
 
 html {
@@ -226,4 +228,32 @@ ul {
 .cell.heading {
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.icon {
+  width: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+
+.file-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  color: var(--main-text-colour);
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+}
+
+.file-action:hover {
+  color: var(--accent-colour);
+}
+
+.file-action:hover .icon path {
+  fill: var(--icon-fill-accent-colour);
 }
