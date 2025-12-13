@@ -33,7 +33,7 @@
         value="<%= locals.currentFolderId %>"
       />
       <div class="dialog-buttons">
-        <button type="submit">Upload</button>
+        <button id="upload-button" type="submit">Upload</button>
         <button id="upload-file-cancel" type="reset">Cancel</button>
       </div>
     </form>
@@ -47,6 +47,8 @@
   const uploadFileDialogCancel = document.getElementById("upload-file-cancel");
   const uploadFileForm = document.getElementById("upload-file-form");
   const uploadFileMessage = document.getElementById("upload-file-message");
+  const uploadButton = document.getElementById("upload-button");
+  const fileInput = document.getElementById("upload-file");
 
   const uploadFileError = "Unable to upload this file";
 
@@ -59,6 +61,11 @@
     const form = event.target;
     const formData = new FormData(form);
 
+    uploadButton.textContent = "Uploading...";
+    fileInput.disabled = true;
+    uploadButton.disabled = true;
+    uploadFileDialogCancel.disabled = true;
+
     let response;
     try {
       response = await fetch(form.action, {
@@ -66,11 +73,13 @@
         body: formData,
       });
     } catch {
+      document.body.style.cursor = "default";
       console.error("Failed to request file upload");
       uploadFileMessage.innerText = uploadFileError;
       return;
     }
 
+    document.body.style.cursor = "default";
     const data = await response.json();
     if (data.success) {
       window.location.reload();

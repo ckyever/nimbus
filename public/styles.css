@@ -158,6 +158,10 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  background-color: #c4c4c4;
+}
+
 h1,
 h2,
 h3 {
@@ -196,6 +200,7 @@ dialog {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 4px;
 }
 
 .signup-login-container {
