@@ -230,8 +230,21 @@ ul {
   font-weight: 500;
 }
 
+.file-folder-name {
+  display: flex;
+  gap: 4px;
+}
+
+.file-folder-name:hover {
+  color: var(--accent-colour);
+}
+
+.file-folder-name:hover .icon path {
+  fill: var(--icon-fill-accent-colour);
+}
+
 .icon {
-  width: 20px;
+  width: 25px;
 }
 
 .actions {
@@ -243,7 +256,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   color: var(--main-text-colour);
   background-color: transparent;
   border: none;

@@ -21,9 +21,19 @@
     <%const modifiedOn = dateFormatter.format(file.modified_on);%>
     <%const createdOn = dateFormatter.format(file.created_on);%>
     <% if (file.type === "FOLDER") { %>
-      <div class="cell"><a href="/files/<%= file.id %>"><%= file.name %></a></div>
+      <div class="cell">
+        <a class="file-folder-name" href="/files/<%= file.id %>">
+          <svg class="icon" alt="Folder icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,18H4V8H20M20,6H12L10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6Z" fill="var(--icon-fill-colour)" /></svg>
+          <%= file.name %>
+        </a>
+      </div>
     <% } else { %>
-      <div class="cell"><a href="<%= file.url %>" download target="_blank""><%= file.name %></a></div>
+      <div class="cell">
+        <a class="file-folder-name" href="<%= file.url %>" download target="_blank"">
+          <svg class="icon" alt="File icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="var(--icon-fill-colour)"/></svg>
+          <%= file.name %>
+        </a>
+      </div>
     <% } %>
     <div class="cell"><%= file.type %></div>
     <div class="cell"><%= file.size %></div>
