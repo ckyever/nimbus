@@ -13,28 +13,32 @@
   Upload File
 </button>
 <dialog id="upload-file-dialog">
-  <form
-    id="upload-file-form"
-    action="/upload"
-    method="POST"
-    enctype="multipart/form-data"
-  >
-    <input
-      type="file"
-      name="file"
-      id="upload-file"
-      aria-label="file"
-      required
-    />
-    <input
-      type="hidden"
-      name="parent-folder-id"
-      value="<%= locals.currentFolderId %>"
-    />
-    <button type="submit">Upload</button>
-    <button id="upload-file-cancel" type="reset">Cancel</button>
-  </form>
-  <div id="upload-file-message"></div>
+  <div class="dialog-container">
+    <form
+      id="upload-file-form"
+      action="/upload"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="file"
+        name="file"
+        id="upload-file"
+        aria-label="file"
+        required
+      />
+      <input
+        type="hidden"
+        name="parent-folder-id"
+        value="<%= locals.currentFolderId %>"
+      />
+      <div class="dialog-buttons">
+        <button type="submit">Upload</button>
+        <button id="upload-file-cancel" type="reset">Cancel</button>
+      </div>
+    </form>
+    <div id="upload-file-message"></div>
+  </div>
 </dialog>
 
 <script>

@@ -171,6 +171,32 @@ ul {
   list-style: none;
 }
 
+dialog {
+  background-color: var(--main-card-background-colour);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: var(--card-border-radius);
+}
+
+.dialog-container,
+.dialog-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: var(--main-text-colour);
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .signup-login-container {
   background-color: var(--main-card-background-colour);
   margin-top: 100px;

@@ -13,23 +13,28 @@
   New Folder
 </button>
 <dialog id="new-folder-dialog">
-  <form id="new-folder-form" action="/new-folder" method="POST">
-    <input
-      type="folder-name"
-      name="folder-name"
-      id="new-folder-name"
-      aria-label="folder-name"
-      required
-    />
-    <input
-      type="hidden"
-      name="parent-folder-id"
-      value="<%= locals.currentFolderId %>"
-    />
-    <button type="submit">Create</button>
-    <button id="new-folder-cancel" type="reset">Cancel</button>
-  </form>
-  <div id="new-folder-message"></div>
+  <div class="dialog-container">
+    <form id="new-folder-form" action="/new-folder" method="POST">
+      <input
+        type="folder-name"
+        name="folder-name"
+        id="new-folder-name"
+        aria-label="folder-name"
+        required
+        placeholder="Folder name"
+      />
+      <input
+        type="hidden"
+        name="parent-folder-id"
+        value="<%= locals.currentFolderId %>"
+      />
+      <div class="dialog-buttons">
+        <button type="submit">Create</button>
+        <button id="new-folder-cancel" type="reset">Cancel</button>
+      </div>
+    </form>
+    <div id="new-folder-message"></div>
+  </div>
 </dialog>
 
 <script>
