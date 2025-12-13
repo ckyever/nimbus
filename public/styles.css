@@ -129,6 +129,7 @@ nav ul {
 
 a {
   color: var(--main-text-colour);
+  text-decoration: none;
 }
 
 a:hover {
